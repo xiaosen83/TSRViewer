@@ -1,0 +1,31 @@
+{
+  "name": "tsrviewer",
+  "version": "1.0.0",
+  "description": "TSR viewer",
+  "main": "app/main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaosen83/TSRViewer.git"
+  },
+  "author": "Cavin Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaosen83/TSRViewer/issues"
+  },
+  "homepage": "https://github.com/xiaosen83/TSRViewer#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "electron": "^1.6.11",
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "adm-zip": "^0.4.7",
+    "bluebird": "^3.5.0"
+  }
+}

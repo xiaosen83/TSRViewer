@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./index.css">
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+      <div class='container' id='beforeload' style='display: none'>
+            <div class='centeritem'>
+                <button id='btLoadTSR' class="btn btn-default">Select TSR</button>
+            </div>
+      </div>
+      <div class='container' id='loaded'>
+        <div class="nav-side-menu">
+            <div class="brand">TSR Viewer</div>
+            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+          
+                <div class="menu-list">
+          
+                    <ul id="menu-content" class="menu-content collapse out">
+                        <li>
+                          <a href="#">
+                          EventLog
+                          </a>
+                        </li>
+
+                        <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                          <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                        </li>
+                        <ul class="sub-menu collapse" id="products">
+                            <li class="active"><a href="#">CSS3 Animation</a></li>
+                            <li><a href="#">General</a></li>
+                            <li><a href="#">Buttons</a></li>
+                            <li><a href="#">Tabs & Accordions</a></li>
+                            <li><a href="#">Typography</a></li>
+                            <li><a href="#">FontAwesome</a></li>
+                            <li><a href="#">Slider</a></li>
+                            <li><a href="#">Panels</a></li>
+                            <li><a href="#">Widgets</a></li>
+                            <li><a href="#">Bootstrap Model</a></li>
+                        </ul>
+
+
+                        <li data-toggle="collapse" data-target="#service" class="collapsed">
+                          <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+                        </li>  
+                        <ul class="sub-menu collapse" id="service">
+                          <li>New Service 1</li>
+                          <li>New Service 2</li>
+                          <li>New Service 3</li>
+                        </ul>
+
+
+                        <li data-toggle="collapse" data-target="#new" class="collapsed">
+                          <a href="#"><i class="fa fa-car fa-lg"></i> Database <span class="arrow"></span></a>
+                        </li>
+                        <ul class="sub-menu collapse" id="new">
+                          <li>Persist</li>
+                          <li>Temp</li>
+                        </ul>
+
+                         <li>
+                          <a href="#">
+                          <i class="fa fa-user fa-lg"></i> Profile
+                          </a>
+                          </li>
+
+                         <li>
+                          <a href="#">
+                          <i class="fa fa-users fa-lg"></i> Users
+                          </a>
+                        </li>
+                    </ul>
+             </div>
+        </div><!--end of nav-side-menu-->
+        <!-- Page Content -->
+        <div class="page-content-wrapper">
+            <div class="tsrpage">
+                <h1>Simple Sidebar</h1>
+                <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+            </div>
+            <div class="tsrpage" id='eventlog' style="display: block">
+              <h1>Event log this is</h1>
+            </div>
+            <div class="tsrpage" id='persistdb'>
+              <h1>Persist DB this is</h1>
+            </div>  
+        </div>
+      </div>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
