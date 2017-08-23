@@ -147,6 +147,8 @@ body {
 
 .page-content-wrapper {
   margin-left: 300px;
+  height: 100%;
+  width: 100%;
 }
 
 .tsrpage {

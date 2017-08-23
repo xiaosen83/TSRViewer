@@ -103,6 +103,9 @@ function initEvent(){
   $('#btLoadTSR').click(function(){
     selectTSR()
   })
+  $('.menu-item').click(function(sender){
+  	console.log('item clicked:' + $(this).text())
+  })
 }
 
 function showUI(type){
