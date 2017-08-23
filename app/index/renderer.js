@@ -7,16 +7,17 @@ var path 		= require('path'),
 		os 			= require('os'),
 		fs 			= require('fs'),
 		Promise = require('bluebird'),
-		adm_zip = require('adm-zip')
+		adm_zip = require('adm-zip'),
+		execSync = require("child_process").execSync
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM fully loaded and parsed");
   initEvent()
-  //loadiingTSR('D:\\Workspace\\repo\\TSRViewer\\test\\sslvpnTechSupportReport.zip') //test
-  LoadEventLog('D:\\Workspace\\repo\\TSRViewer\\test\\sslvpnTechSupportReport\\eventlog').then(function(itemlist){
-  	PrintEventLog(itemlist)
-  })
+  loadiingTSR('D:\\Workspace\\repo\\TSRViewer\\test\\sslvpnTechSupportReport.zip') //test
+  //LoadEventLog('D:\\Workspace\\repo\\TSRViewer\\test\\sslvpnTechSupportReport\\eventlog').then(function(itemlist){
+  //	PrintEventLog(itemlist)
+  //})
 });
 
 function updateProgress(msg){
@@ -39,9 +40,14 @@ function loadiingTSR(filepath){
 		return installPersistDB(tsrpath)
 	}).catch(function(e){
 		console.log('Error: ' + e)
-	}).done(function(){
+	}).done(function(tsrpath){
 		console.log('TSR successfully loaded!')
 		showUI('loaded')
+		//clean TSR
+		var removeDirCmd = os.platform() === 'win32' ? "rmdir /s /q " : "rm -rf "
+		execSync(removeDirCmd + '"' + tsrpath + '"', function (err) {
+       console.log(err);
+    })
 	})
 	
 }
@@ -118,11 +124,9 @@ Aug 10 00:19:47 SRA4600 SSLVPN: id=sslvpn sn=C0EAE49171B8 time="2017-08-10 00:19
 function LoadEventLog(file) {
 	// require('fs').readFileSync('abc.txt').toString().split('\n').forEach(function (line) { line; }) 
 	console.log('Load eventlog file:' + file)
-	console.log('pwd:' + __dirname)
 	return new Promise(function(resolve, reject){
 		var itemlist = []
 		var re = /([A-Za-z]{3}[ ]*[0-9]{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2}).*pri=([0-9]).* c=([0-9]*).* src=([0-9\.]*).* dst=([0-9\.]*).* usr="([^"]*).* msg="([^"]*)"/
-		//read file here
 		fs.readFileSync(file).toString().split('\n').forEach(function(line){
 			var eventlog = {}
 			var match = re.exec(line)
@@ -135,7 +139,6 @@ function LoadEventLog(file) {
 				eventlog.usr = match[6]
 				eventlog.msg = match[7]
 				itemlist.push(eventlog)
-				console.log('log obj:' + JSON.stringify(eventlog))
 			}
 		})
 		resolve(itemlist)
@@ -144,4 +147,19 @@ function LoadEventLog(file) {
 
 function PrintEventLog(itemlist){
 	console.log("Find event log item:" + itemlist.length)
+	//add item to table
+	for(var i=0, len=itemlist.length; i<len; i++){
+		var row = `
+			<tr>
+				<td>`+itemlist[i].time+`</td>
+				<td>`+itemlist[i].pri+`</td>
+				<td>`+itemlist[i].cat+`</td>
+				<td>`+itemlist[i].src+`</td>
+				<td>`+itemlist[i].dst+`</td>
+				<td>`+itemlist[i].usr+`</td>
+				<td>`+itemlist[i].msg+`</td>
+			</tr>
+		`
+		$('#tableEventlog tbody').append(row)
+	}
 }
