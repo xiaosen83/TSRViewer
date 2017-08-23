@@ -62,6 +62,7 @@ function installEventLog(tsrpath){
 		var filepath = path.join(tsrpath, 'eventlog')
 		var lstat = Promise.promisify(require("fs").lstat)
 		lstat(filepath).then(function(stats){
+			LoadEventLog(filepath).then(function(itemlist){PrintEventLog(itemlist)})
 			if(stats.isFile())
 				resolve(tsrpath)
 			else
@@ -100,4 +101,20 @@ function showUI(type){
 		$('#beforeload').hide()
 		$('#loaded').show()
 	}
+}
+
+function LogSortFunc(index){
+
+}
+
+function LoadEventLog(file) {
+	return new Promise(function(resolve, reject){
+		var itemlist = []
+		//read file here
+		resolve(itemlist)
+	})
+}
+
+function PrintEventLog(itemlist){
+
 }
