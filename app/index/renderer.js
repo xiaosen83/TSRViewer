@@ -3,16 +3,20 @@
 // All of the Node.js APIs are available in this process.
 let $ = require('jquery')
 const {dialog} = require('electron').remote
-var path = require('path'),
-	os = require('os'),
-	Promise = require('bluebird'),
-	adm_zip = require('adm-zip')
+var path 		= require('path'),
+		os 			= require('os'),
+		fs 			= require('fs'),
+		Promise = require('bluebird'),
+		adm_zip = require('adm-zip')
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM fully loaded and parsed");
   initEvent()
-  loadiingTSR('D:\\Workspace\\repo\\TSRViewer\\test\\sslvpnTechSupportReport.zip') //test
+  //loadiingTSR('D:\\Workspace\\repo\\TSRViewer\\test\\sslvpnTechSupportReport.zip') //test
+  LoadEventLog('D:\\Workspace\\repo\\TSRViewer\\test\\sslvpnTechSupportReport\\eventlog').then(function(itemlist){
+  	PrintEventLog(itemlist)
+  })
 });
 
 function updateProgress(msg){
@@ -107,14 +111,37 @@ function LogSortFunc(index){
 
 }
 
+//eventlog = {time: '', pri: 0, cat: 1, src: '', dst: '', usr: '', msg: ''}
+/*
+Aug 10 00:19:47 SRA4600 SSLVPN: id=sslvpn sn=C0EAE49171B8 time="2017-08-10 00:19:47" vp_time="2017-08-09 22:19:47 UTC" fw=192.168.200.1 pri=5 m=0 c=1200 src=192.168.200.1 dst=192.168.200.1 user="Proxy" usr="Proxy" msg="20608:Child exit with status:0" agent="(null)" geoCountryID="0" geoCountryName="LAN" geoRegionName="unknown" geoCityName="unknown"
+*/
 function LoadEventLog(file) {
+	// require('fs').readFileSync('abc.txt').toString().split('\n').forEach(function (line) { line; }) 
+	console.log('Load eventlog file:' + file)
+	console.log('pwd:' + __dirname)
 	return new Promise(function(resolve, reject){
 		var itemlist = []
+		var re = /([A-Za-z]{3}[ ]*[0-9]{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2}).*pri=([0-9]).* c=([0-9]*).* src=([0-9\.]*).* dst=([0-9\.]*).* usr="([^"]*).* msg="([^"]*)"/
 		//read file here
+		fs.readFileSync(file).toString().split('\n').forEach(function(line){
+			var eventlog = {}
+			var match = re.exec(line)
+			if(match){
+				eventlog.time = match[1]
+				eventlog.pri = match[2]
+				eventlog.cat = match[3]
+				eventlog.src = match[4]
+				eventlog.dst = match[5]
+				eventlog.usr = match[6]
+				eventlog.msg = match[7]
+				itemlist.push(eventlog)
+				console.log('log obj:' + JSON.stringify(eventlog))
+			}
+		})
 		resolve(itemlist)
 	})
 }
 
 function PrintEventLog(itemlist){
-
+	console.log("Find event log item:" + itemlist.length)
 }
