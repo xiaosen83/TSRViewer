@@ -24,11 +24,12 @@
                 <div class="menu-list">
           
                     <ul id="menu-content" class="menu-content collapse out">
-                        <li class='menu-item'>
-                          <a href="#">
-                          EventLog
-                          </a>
+                        <li class='menu-item' name='eventlog'>
+                          <a href="#">EventLog</a>
                         </li>
+                        <li class='menu-item' name='status'>
+                          <a href="#">Status</a>
+                        </li>                        
 <!--
                         <li data-toggle="collapse" data-target="#service" class="collapsed">
                           <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
@@ -44,16 +45,16 @@
                           <a href="#"><i class="fa fa-car fa-lg"></i> Database <span class="arrow"></span></a>
                         </li>
                         <ul class="sub-menu collapse" id="db">
-                          <li class='menu-item'>Persist</li>
-                          <li class='menu-item'>Temp</li>
+                          <li class='menu-item' name='persistdb'>Persist</li>
+                          <li class='menu-item' name='tempdb'>Temp</li>
                         </ul>
 
                         <li data-toggle="collapse" data-target="#system" class="collapsed">
                           <a href="#"><i class="fa fa-car fa-lg"></i> System <span class="arrow"></span></a>
                         </li>
                         <ul class="sub-menu collapse" id="system">
-                          <li class='menu-item'>Firebase</li>
-                          <li class='menu-item'>SMM</li>
+                          <li class='menu-item' name='firebase'>Firebase</li>
+                          <li class='menu-item' name='smm'>SMM</li>
                         </ul>
 
                          <li class='menu-item'>
@@ -97,7 +98,53 @@
             </div>
             <div class="tsrpage" id='persistdb'>
               <h1>Persist DB this is</h1>
-            </div>  
+            </div>
+            <div class="tsrpage" id='status'>
+              <a href="#s_sysinfo">System Information</a><br>
+              <a href="#s_status">Current EasyAccess Status</a><br>
+              <div name='s_sysinfo'>
+                <h1>System Information</h1>
+                <div class='status_content'>
+                    Model:               SRA 4600
+                    Serial Number:       C0EAE4745534
+                    Authentication Code: VLWS-J6YH
+                    Firmware Version:    8.6.0.1-9sv
+                    ROM Version:         2.0.0.10
+                    CPU (Utilization):   1.66 GHz Intel Atom Dual Core Processor (0%)
+                    Total Memory:        2.0 GB RAM (21%), 1GB Flash
+                    System Time:         2017/07/10 16:38:46
+                    Up Time:             0 Days 06:06:19
+                    Active Users:        1
+                    Available User Licenses: 25
+                    Active User Licenses: 0
+                    User Accounts:       3
+                    Anonymous Sessions:  0
+                    Spike User License:         No
+                    Device Registered:   No
+                    ViewPoint Licensed:  No
+                    Analyzer Licensed:   No
+                    WAF Licensed:        No
+                    Geo IP  Botnet Filter Licensed: No
+                    EPC Licensed:         Yes
+                    Virtual Assist:      No License
+                </div>
+              </div>
+              <div name='s_status'>
+                <h1>Current EasyAccess Status</h1>
+                <div class='status_content'>
+System Manager Status:      RUNNING  
+Network Daemon Status:      RUNNING  
+SSL Proxy Daemon Status:    RUNNING  
+Web Server Status:          RUNNING  
+FTP Daemon Status:          RUNNING  
+Statistics Daemon Status:   RUNNING  
+Virtual Meeting Daemon Status:   RUNNING  
+Dtls Server Daemon Status:   RUNNING  
+DHCP Client Daemon Status:   RUNNING  
+NX logging Daemon Status:   RUNNING  
+                </div>
+              </div>
+            </div>              
         </div>
       </div>
   </body>

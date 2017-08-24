@@ -104,24 +104,16 @@ function initEvent(){
   $('#btLoadTSR').click(function(){
     selectTSR()
   })
-  /*
+  
   $('.menu-item').click(function(sender){
-  	console.log('item clicked:' + $(this).text())
-  	console.log('item next is ul:' + $(this).next().is('ul'))
-  	console.log('item next is li:' + $(this).next().is('li'))
-  	if($(this).next().is('li')){
-	  	$('li').removeClass('active')
-	  	$(this).addClass('active')  		
-  	}
-  	else if($(this).next().is('ul')){
-  		//has sub menu item
-  		if($(this).next().is(':visible'))
-  			$(this).next().hide()
-  		else
-  			$(this).next().show()
-  	}
+  	console.log('item clicked:' + $(this).text() + ',name:' + $(this).attr('name'))
+
+	//$('#menu-list li').removeClass('active')
+	//$(this).addClass('active')  		
+	showLogItem($(this).attr('name'))
+
   })
-  */
+
 }
 
 function showUI(type){
@@ -130,4 +122,10 @@ function showUI(type){
 		$('#beforeload').hide()
 		$('#loaded').show()
 	}
+}
+
+function showLogItem(name){
+	console.log('UI udpate: ' + name)
+	$('.tsrpage:visible').hide()
+	$('div[id="'+name+'"]').show()
 }
