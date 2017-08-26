@@ -1,5 +1,5 @@
 /*
-
+eventlog related functions
 */
 let $ = require('jquery')
 var path    = require('path'),

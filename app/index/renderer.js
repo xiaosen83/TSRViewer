@@ -9,7 +9,8 @@ var path 		= require('path'),
 		Promise = require('bluebird'),
 		adm_zip = require('adm-zip'),
 		execSync = require("child_process").execSync,
-		eventlog= require('./sub_eventlog')
+		eventlog= require('./sub_eventlog'),
+		status = require('./sub_status')
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -39,6 +40,8 @@ function loadiingTSR(filepath){
 		return installEventLog(tsrpath)
 	}).then(function(tsrpath){
 		return installPersistDB(tsrpath)
+	}).then(function(tsrpath){
+		return installStatus(tsrpath)
 	}).catch(function(e){
 		console.log('Error: ' + e)
 	}).done(function(tsrpath){
@@ -47,10 +50,11 @@ function loadiingTSR(filepath){
 		//clean TSR
 		var removeDirCmd = os.platform() === 'win32' ? "rmdir /s /q " : "rm -rf "
 		execSync(removeDirCmd + '"' + tsrpath + '"', function (err) {
-       console.log(err);
-    })
+	       console.log(err);
+	    })
+	    //select default item 'eventlog'
 	})
-	
+	$('.menu-item:first').click()
 }
 
 function extractTSR(zippath){
@@ -100,6 +104,26 @@ function installPersistDB(tsrpath){
 		})
 	})	
 }
+
+//persist.db.log
+function installStatus(tsrpath){
+	updateProgress('install status')
+	return new Promise(function(resolve, reject){
+		var filepath = path.join(tsrpath, 'status.txt')
+		var lstat = Promise.promisify(require("fs").lstat)
+		lstat(filepath).then(function(stats){
+			if(stats.isFile()){
+				status.ParseStatusFile(filepath)
+				resolve(tsrpath)
+			}
+			else
+				reject(filepath)
+		}).catch(function(e){
+			console.log('Error:' + e)
+		})
+	})	
+}
+
 function initEvent(){
   $('#btLoadTSR').click(function(){
     selectTSR()

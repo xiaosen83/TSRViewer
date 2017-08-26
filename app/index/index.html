@@ -73,7 +73,7 @@
                 <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
                 <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
             </div>
-            <div class="tsrpage" id='eventlog' style="display: block">
+            <div class="tsrpage" id='eventlog'>
               <div>
                 <input type='checkbox' name='e_hidetime'><label for='e_hidetime'>Hide Time</label>
                 <input type='checkbox' name='e_hidepri'><label for='e_hidepri'>Hide Priority</label>
@@ -99,51 +99,23 @@
             <div class="tsrpage" id='persistdb'>
               <h1>Persist DB this is</h1>
             </div>
-            <div class="tsrpage" id='status'>
-              <a href="#s_sysinfo">System Information</a><br>
-              <a href="#s_status">Current EasyAccess Status</a><br>
-              <div name='s_sysinfo'>
-                <h1>System Information</h1>
-                <div class='status_content'>
-                    Model:               SRA 4600
-                    Serial Number:       C0EAE4745534
-                    Authentication Code: VLWS-J6YH
-                    Firmware Version:    8.6.0.1-9sv
-                    ROM Version:         2.0.0.10
-                    CPU (Utilization):   1.66 GHz Intel Atom Dual Core Processor (0%)
-                    Total Memory:        2.0 GB RAM (21%), 1GB Flash
-                    System Time:         2017/07/10 16:38:46
-                    Up Time:             0 Days 06:06:19
-                    Active Users:        1
-                    Available User Licenses: 25
-                    Active User Licenses: 0
-                    User Accounts:       3
-                    Anonymous Sessions:  0
-                    Spike User License:         No
-                    Device Registered:   No
-                    ViewPoint Licensed:  No
-                    Analyzer Licensed:   No
-                    WAF Licensed:        No
-                    Geo IP  Botnet Filter Licensed: No
-                    EPC Licensed:         Yes
-                    Virtual Assist:      No License
+            <div class="tsrpage" id='status' style='display: block'>
+                <div id='status_links'>
+       <!--           <a href="#s_sysinfo">System Information</a><br>
+                  <a href="#s_status">Current EasyAccess Status</a><br> -->
                 </div>
-              </div>
-              <div name='s_status'>
-                <h1>Current EasyAccess Status</h1>
-                <div class='status_content'>
-System Manager Status:      RUNNING  
-Network Daemon Status:      RUNNING  
-SSL Proxy Daemon Status:    RUNNING  
-Web Server Status:          RUNNING  
-FTP Daemon Status:          RUNNING  
-Statistics Daemon Status:   RUNNING  
-Virtual Meeting Daemon Status:   RUNNING  
-Dtls Server Daemon Status:   RUNNING  
-DHCP Client Daemon Status:   RUNNING  
-NX logging Daemon Status:   RUNNING  
+                <div id='status_main'>
+        <!--          <div name='s_sysinfo' id='s_sysinfo'>
+                    <h1>System Information</h1>
+                    <div class='status_content'>                
+                    </div>
+                  </div>
+                  <div name='s_status' id='s_status'>
+                    <h1>Current EasyAccess Status</h1>
+                    <div class='status_content'>
+                    </div>
+                  </div>  -->              
                 </div>
-              </div>
             </div>              
         </div>
       </div>
