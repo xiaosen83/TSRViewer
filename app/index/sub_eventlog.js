@@ -17,6 +17,21 @@ module.exports = {
   LogSortFunc: function(index){
     console.log('submodule called!')
   },
+  FilterLog: function(filter){
+    console.log('eventlog filter:' + filter)
+    $('#tableEventlog tbody').find('tr').hide()
+    var rows = $("#tableEventlog tbody").find("tr").hide();
+    var data = filter.split(" ");
+    $.each(data, function(i, v) {
+      rows.filter(":contains('" + v + "')").show();
+    }) 
+  },
+  HideShowColumn: function(index, checked){
+    if(!checked)
+      $('td:nth-child('+index+'),th:nth-child('+index+')').show();
+    else
+      $('td:nth-child('+index+'),th:nth-child('+index+')').hide();
+  },
   LoadEventLog: function (file) {
     // require('fs').readFileSync('abc.txt').toString().split('\n').forEach(function (line) { line; }) 
     console.log('Load eventlog file:' + file)

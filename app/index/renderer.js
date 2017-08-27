@@ -135,9 +135,25 @@ function initEvent(){
 	//$('#menu-list li').removeClass('active')
 	//$(this).addClass('active')  		
 	showLogItem($(this).attr('name'))
-
   })
 
+  $('#btFilterEventLog').click(function(){
+  	eventlog.FilterLog($('input[name="e_searchtext"]').val())
+  })
+
+  $('#btEventLogClearFilter').click(function(){
+  	$('#tableEventlog tbody').find('tr').show()
+  })
+
+  $('input:checkbox').change(function(){
+  	console.log('checkbox clicked:' + $(this).attr('name') +',checked?'+ $(this).is(':checked'))
+  	var name= $(this).attr('name')
+  	var checked = $(this).is(':checked')
+  	if(name == 'e_hidetime')
+  		eventlog.HideShowColumn(1, checked)
+  	else if(name='e_hidepri')
+  		eventlog.HideShowColumn(2, checked)
+  })  
 }
 
 function showUI(type){
